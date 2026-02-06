@@ -41,6 +41,8 @@ export const TelemetryActions = {
     ImportJira: 'settings_importJira',
     ImportTodoist: 'settings_importTodoist',
     ExportArchive: 'settings_exportArchive',
+    ImportJson: 'settings_importJson',
+    ExportJson: 'settings_exportJson',
     StartTour: 'welcomeScreen_startTour',
     SkipTour: 'welcomeScreen_skipTour',
     CloudMoreInfo: 'cloud_more_info',

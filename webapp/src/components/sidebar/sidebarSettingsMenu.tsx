@@ -4,6 +4,7 @@ import React, {useState} from 'react'
 import {FormattedMessage, useIntl} from 'react-intl'
 
 import {Archiver} from '../../archiver'
+import {JsonImporter} from '../../importers/jsonImporter'
 import {
     darkTheme,
     darkThemeName,
@@ -98,6 +99,19 @@ const SidebarSettingsMenu = (props: Props) => {
                                 Archiver.importFullArchive()
                             }}
                         />
+                        <Menu.Text
+                            id='import_json'
+                            name={intl.formatMessage({id: 'Sidebar.import-json', defaultMessage: 'Import JSON'})}
+                            onClick={async () => {
+                                TelemetryClient.trackEvent(TelemetryCategory, TelemetryActions.ImportJson)
+                                JsonImporter.importBoardJson((result) => {
+                                    if (result.success) {
+                                        // Reload to show the imported board
+                                        window.location.reload()
+                                    }
+                                })
+                            }}
+                        />
                         {
                             Constants.imports.map((i) => (
                                 <Menu.Text
@@ -112,16 +126,23 @@ const SidebarSettingsMenu = (props: Props) => {
                             ))
                         }
                     </Menu.SubMenu>
-                    <Menu.Text
+                    <Menu.SubMenu
                         id='export'
-                        name={intl.formatMessage({id: 'Sidebar.export-archive', defaultMessage: 'Export archive'})}
-                        onClick={async () => {
-                            if (currentTeam) {
-                                TelemetryClient.trackEvent(TelemetryCategory, TelemetryActions.ExportArchive)
-                                Archiver.exportFullArchive(currentTeam.id)
-                            }
-                        }}
-                    />
+                        name={intl.formatMessage({id: 'Sidebar.export', defaultMessage: 'Export'})}
+                        position='top'
+                    >
+                        <Menu.Text
+                            id='export_archive'
+                            name={intl.formatMessage({id: 'Sidebar.export-archive', defaultMessage: 'Export archive'})}
+                            onClick={async () => {
+                                if (currentTeam) {
+                                    TelemetryClient.trackEvent(TelemetryCategory, TelemetryActions.ExportArchive)
+                                    Archiver.exportFullArchive(currentTeam.id)
+                                }
+                            }}
+                        />
+                        {/* JSON Export is available in the board's view header menu */}
+                    </Menu.SubMenu>
                     <Menu.SubMenu
                         id='lang'
                         name={intl.formatMessage({id: 'Sidebar.set-language', defaultMessage: 'Set language'})}

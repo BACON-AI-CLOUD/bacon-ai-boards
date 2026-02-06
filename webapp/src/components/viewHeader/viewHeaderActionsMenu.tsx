@@ -4,7 +4,9 @@ import React from 'react'
 import {useIntl, IntlShape} from 'react-intl'
 
 import {CsvExporter} from '../../csvExporter'
+import {JsonExporter} from '../../exporters/jsonExporter'
 import {Archiver} from '../../archiver'
+import {Block} from '../../blocks/block'
 import {Board} from '../../blocks/board'
 import {BoardView} from '../../blocks/boardView'
 import {Card} from '../../blocks/card'
@@ -13,6 +15,9 @@ import OptionsIcon from '../../widgets/icons/options'
 import Menu from '../../widgets/menu'
 import MenuWrapper from '../../widgets/menuWrapper'
 import {Utils} from '../../utils'
+import {useAppSelector} from '../../store/hooks'
+import {getContents} from '../../store/contents'
+import {getCurrentBoardViews} from '../../store/views'
 
 import ModalWrapper from '../modalWrapper'
 import {sendFlashMessage} from '../flashMessages'
@@ -94,9 +99,29 @@ function onExportCsvTrigger(board: Board, activeView: BoardView, cards: Card[], 
     }
 }
 
+function onExportJsonTrigger(board: Board, views: BoardView[], cards: Card[], blocks: Block[], intl: IntlShape) {
+    try {
+        JsonExporter.exportBoardJson(board, views, cards, blocks)
+        const exportCompleteMessage = intl.formatMessage({
+            id: 'ViewHeader.export-complete',
+            defaultMessage: 'Export complete!',
+        })
+        sendFlashMessage({content: exportCompleteMessage, severity: 'normal'})
+    } catch (e) {
+        Utils.logError(`ExportJSON ERROR: ${e}`)
+        const exportFailedMessage = intl.formatMessage({
+            id: 'ViewHeader.export-failed',
+            defaultMessage: 'Export failed!',
+        })
+        sendFlashMessage({content: exportFailedMessage, severity: 'high'})
+    }
+}
+
 const ViewHeaderActionsMenu = (props: Props) => {
     const {board, activeView, cards} = props
     const intl = useIntl()
+    const contents = useAppSelector(getContents)
+    const views = useAppSelector(getCurrentBoardViews)
 
     return (
         <ModalWrapper>
@@ -107,6 +132,11 @@ const ViewHeaderActionsMenu = (props: Props) => {
                         id='exportCsv'
                         name={intl.formatMessage({id: 'ViewHeader.export-csv', defaultMessage: 'Export to CSV'})}
                         onClick={() => onExportCsvTrigger(board, activeView, cards, intl)}
+                    />
+                    <Menu.Text
+                        id='exportJson'
+                        name={intl.formatMessage({id: 'ViewHeader.export-json', defaultMessage: 'Export to JSON'})}
+                        onClick={() => onExportJsonTrigger(board, views, cards, contents as Block[], intl)}
                     />
                     <Menu.Text
                         id='exportBoardArchive'
