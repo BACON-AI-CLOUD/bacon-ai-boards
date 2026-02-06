@@ -1,0 +1,26 @@
+{
+  "project_id": "focalboard",
+  "project_name": "Focalboard Integration",
+  "description": "BACON-AI integration with Focalboard project management",
+
+  "framework_version": "2.0.0",
+  "template_used": "bacon-ai-12-phase",
+
+  "board": {
+    "id": "bd5mw98s3cjftjnef77q8c4oone",
+    "name": "BACON-AI",
+    "url": "http://localhost:8000"
+  },
+
+  "documents": {
+    "deliverables": [],
+    "prompts": [],
+    "results": []
+  },
+
+  "phases_completed": [1],
+  "current_phase": 1,
+
+  "created": "2026-01-29",
+  "last_updated": "2026-01-29"
+}

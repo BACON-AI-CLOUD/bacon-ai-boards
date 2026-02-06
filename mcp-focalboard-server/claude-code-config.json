@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "focalboard": {
+      "command": "python",
+      "args": ["/home/bacon/bacon-ai/projects/focalboard/mcp-focalboard-server/server.py"],
+      "env": {
+        "FOCALBOARD_URL": "http://localhost:8000",
+        "FOCALBOARD_TOKEN": "k77tg84g87pd6tjk7rdho1kqs9h"
+      }
+    }
+  }
+}
