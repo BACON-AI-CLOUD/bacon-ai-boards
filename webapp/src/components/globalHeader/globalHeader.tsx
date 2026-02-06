@@ -24,7 +24,7 @@ type HeaderItemProps = {
 
 const HeaderItems = (props: HeaderItemProps) => {
     const language = useAppSelector<string>(getLanguage)
-    const helpUrl = 'https://www.focalboard.com/fwlink/doc-boards.html?v=' + Constants.versionString
+    const helpUrl = 'https://bacon-ai.cloud/docs/boards?v=' + Constants.versionString
 
     return (
         <IntlProvider

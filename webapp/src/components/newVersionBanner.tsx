@@ -31,7 +31,7 @@ const NewVersionBanner = () => {
             >
                 <FormattedMessage
                     id='BoardPage.newVersion'
-                    defaultMessage='A new version of Boards is available, click here to reload.'
+                    defaultMessage='A new version of BACON-AI-BOARDS is available, click here to reload.'
                 />
             </a>
         </div>

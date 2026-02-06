@@ -18,7 +18,7 @@ import CompassIcon from '../../widgets/icons/compassIcon'
 import TelemetryClient, {TelemetryCategory, TelemetryActions} from '../../telemetry/telemetryClient'
 
 import './versionMessage.scss'
-const helpURL = 'https://mattermost.com/pl/whats-new-boards/'
+const helpURL = 'https://bacon-ai.cloud/docs/boards/whats-new'
 
 const VersionMessage = React.memo(() => {
     const intl = useIntl()

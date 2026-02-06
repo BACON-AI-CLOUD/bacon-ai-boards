@@ -117,7 +117,7 @@ const WelcomePage = () => {
                 <h1 className='text-heading9'>
                     <FormattedMessage
                         id='WelcomePage.Heading'
-                        defaultMessage='Welcome To Boards'
+                        defaultMessage='Welcome To BACON-AI-BOARDS'
                     />
                 </h1>
                 <div className='WelcomePage__subtitle'>

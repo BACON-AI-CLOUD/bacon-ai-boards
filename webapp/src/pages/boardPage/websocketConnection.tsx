@@ -48,7 +48,7 @@ const WebsocketConnection = () => {
         return (
             <div className='WSConnection error'>
                 <a
-                    href='https://www.focalboard.com/fwlink/websocket-connect-error.html'
+                    href='https://bacon-ai.cloud/docs/boards/websocket-connect-error'
                     target='_blank'
                     rel='noreferrer'
                 >
