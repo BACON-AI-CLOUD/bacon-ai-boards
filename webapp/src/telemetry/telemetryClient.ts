@@ -45,6 +45,7 @@ export const TelemetryActions = {
     ExportJson: 'settings_exportJson',
     ImportXml: 'settings_importXml',
     ExportXml: 'settings_exportXml',
+    ExportBpmn: 'settings_exportBpmn',
     StartTour: 'welcomeScreen_startTour',
     SkipTour: 'welcomeScreen_skipTour',
     CloudMoreInfo: 'cloud_more_info',

@@ -1,12 +1,15 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-import React from 'react'
+import React, {useState} from 'react'
 import {useIntl, IntlShape} from 'react-intl'
 
 import {CsvExporter} from '../../csvExporter'
 import {JsonExporter} from '../../exporters/jsonExporter'
 import {XmlExporter} from '../../exporters/xmlExporter'
+import {BpmnExporter} from '../../exporters/bpmnExporter'
 import {Archiver} from '../../archiver'
+import {BpmnMappingConfig} from '../../types/bpmn'
+import BpmnExportDialog from '../dialog/bpmnExportDialog'
 import {Block} from '../../blocks/block'
 import {Board} from '../../blocks/board'
 import {BoardView} from '../../blocks/boardView'
@@ -141,6 +144,7 @@ const ViewHeaderActionsMenu = (props: Props) => {
     const intl = useIntl()
     const contents = useAppSelector(getContents)
     const views = useAppSelector(getCurrentBoardViews)
+    const [showBpmnExportDialog, setShowBpmnExportDialog] = useState(false)
 
     return (
         <ModalWrapper>
@@ -161,6 +165,11 @@ const ViewHeaderActionsMenu = (props: Props) => {
                         id='exportXml'
                         name={intl.formatMessage({id: 'ViewHeader.export-xml', defaultMessage: 'Export to XML'})}
                         onClick={() => onExportXmlTrigger(board, views, cards, contents as Block[], intl)}
+                    />
+                    <Menu.Text
+                        id='exportBpmn'
+                        name={intl.formatMessage({id: 'ViewHeader.export-bpmn', defaultMessage: 'Export to BPMN'})}
+                        onClick={() => setShowBpmnExportDialog(true)}
                     />
                     <Menu.Text
                         id='exportBoardArchive'
@@ -193,6 +202,31 @@ const ViewHeaderActionsMenu = (props: Props) => {
                     */}
                 </Menu>
             </MenuWrapper>
+            {showBpmnExportDialog && (
+                <BpmnExportDialog
+                    board={board}
+                    cards={cards}
+                    onClose={() => setShowBpmnExportDialog(false)}
+                    onExport={(config: BpmnMappingConfig) => {
+                        try {
+                            BpmnExporter.exportBoardBpmn(board, cards, config)
+                            const exportCompleteMessage = intl.formatMessage({
+                                id: 'ViewHeader.export-complete',
+                                defaultMessage: 'Export complete!',
+                            })
+                            sendFlashMessage({content: exportCompleteMessage, severity: 'normal'})
+                        } catch (e) {
+                            Utils.logError(`ExportBPMN ERROR: ${e}`)
+                            const exportFailedMessage = intl.formatMessage({
+                                id: 'ViewHeader.export-failed',
+                                defaultMessage: 'Export failed!',
+                            })
+                            sendFlashMessage({content: exportFailedMessage, severity: 'high'})
+                        }
+                        setShowBpmnExportDialog(false)
+                    }}
+                />
+            )}
         </ModalWrapper>
     )
 }

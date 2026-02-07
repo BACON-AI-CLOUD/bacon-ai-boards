@@ -1,0 +1,238 @@
+// Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
+// See LICENSE.txt for license information.
+
+.BpmnExportDialog {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 400px;
+
+    .dialog-body {
+        padding: 0 32px 24px;
+        overflow-y: auto;
+        flex: 1;
+    }
+
+    .dialog-footer {
+        display: flex;
+        justify-content: flex-end;
+        gap: 12px;
+        padding: 16px 32px;
+        border-top: 1px solid rgba(var(--center-channel-color-rgb), 0.08);
+        background-color: rgba(var(--center-channel-color-rgb), 0.02);
+    }
+
+    .form-group {
+        margin-bottom: 24px;
+
+        label {
+            display: block;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: rgba(var(--center-channel-color-rgb), 0.72);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 8px 12px;
+            font-size: 14px;
+            line-height: 20px;
+            color: rgb(var(--center-channel-color-rgb));
+            background-color: rgb(var(--center-channel-bg-rgb));
+            border: 1px solid rgba(var(--center-channel-color-rgb), 0.16);
+            border-radius: 4px;
+            transition: border-color 0.15s ease-in-out;
+
+            &:focus {
+                outline: none;
+                border-color: rgb(var(--button-bg-rgb));
+                box-shadow: 0 0 0 2px rgba(var(--button-bg-rgb), 0.1);
+            }
+
+            &:hover:not(:focus) {
+                border-color: rgba(var(--center-channel-color-rgb), 0.24);
+            }
+        }
+    }
+
+    .state-options {
+        overflow-x: auto;
+    }
+
+    .state-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+
+        thead {
+            background-color: rgba(var(--center-channel-color-rgb), 0.04);
+
+            th {
+                padding: 10px 12px;
+                text-align: left;
+                font-weight: 600;
+                font-size: 12px;
+                text-transform: uppercase;
+                color: rgba(var(--center-channel-color-rgb), 0.64);
+                border-bottom: 2px solid rgba(var(--center-channel-color-rgb), 0.08);
+
+                &:nth-child(2) {
+                    text-align: center;
+                }
+
+                &:nth-child(3),
+                &:nth-child(4) {
+                    text-align: center;
+                    width: 100px;
+                }
+            }
+        }
+
+        tbody {
+            tr {
+                border-bottom: 1px solid rgba(var(--center-channel-color-rgb), 0.08);
+                transition: background-color 0.15s ease;
+
+                &:hover {
+                    background-color: rgba(var(--center-channel-color-rgb), 0.04);
+                }
+
+                &:last-child {
+                    border-bottom: 0;
+                }
+            }
+
+            td {
+                padding: 12px;
+
+                &.card-count {
+                    text-align: center;
+                    font-weight: 600;
+                    color: rgba(var(--center-channel-color-rgb), 0.64);
+                }
+
+                &.checkbox-cell {
+                    text-align: center;
+                }
+            }
+        }
+    }
+
+    .status-label {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        .status-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+
+        span {
+            color: rgb(var(--center-channel-color-rgb));
+        }
+    }
+
+    .validation-message {
+        padding: 12px 16px;
+        border-radius: 4px;
+        font-size: 13px;
+        margin-bottom: 16px;
+
+        &.warning {
+            background-color: rgba(255, 188, 66, 0.1);
+            border: 1px solid rgba(255, 188, 66, 0.3);
+            color: rgb(var(--center-channel-color-rgb));
+        }
+
+        &.error {
+            background-color: rgba(230, 77, 77, 0.1);
+            border: 1px solid rgba(230, 77, 77, 0.3);
+            color: rgb(var(--center-channel-color-rgb));
+        }
+    }
+
+    .export-summary {
+        padding: 16px;
+        background-color: rgba(var(--button-bg-rgb), 0.08);
+        border-radius: 4px;
+        font-size: 14px;
+        font-weight: 500;
+        color: rgb(var(--center-channel-color-rgb));
+        text-align: center;
+        margin-top: 8px;
+    }
+
+    // Button styling overrides for dialog footer
+    .dialog-footer {
+        .Button {
+            min-width: 100px;
+            padding: 8px 20px;
+            font-size: 14px;
+            font-weight: 600;
+
+            &.filled {
+                background-color: rgb(var(--button-bg-rgb));
+                color: rgb(var(--button-color-rgb));
+
+                &:hover:not(:disabled) {
+                    background-color: rgba(var(--button-bg-rgb), 0.88);
+                }
+
+                &:disabled {
+                    opacity: 0.5;
+                    cursor: not-allowed;
+                }
+            }
+
+            &:not(.filled) {
+                background-color: transparent;
+                color: rgb(var(--button-bg-rgb));
+                border: 1px solid rgba(var(--button-bg-rgb), 0.3);
+
+                &:hover {
+                    background-color: rgba(var(--button-bg-rgb), 0.08);
+                    border-color: rgb(var(--button-bg-rgb));
+                }
+            }
+        }
+    }
+}
+
+// Mobile responsiveness
+@media (max-width: 768px) {
+    .BpmnExportDialog {
+        .state-table {
+            font-size: 12px;
+
+            thead th,
+            tbody td {
+                padding: 8px;
+            }
+
+            thead th {
+                font-size: 11px;
+            }
+
+            .status-label {
+                font-size: 12px;
+
+                .status-color {
+                    width: 10px;
+                    height: 10px;
+                }
+            }
+        }
+
+        .dialog-footer {
+            flex-direction: column-reverse;
+
+            .Button {
+                width: 100%;
+            }
+        }
+    }
+}

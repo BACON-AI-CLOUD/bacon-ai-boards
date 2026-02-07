@@ -8,6 +8,8 @@ import {JsonImporter} from '../../importers/jsonImporter'
 import {JsonExporter} from '../../exporters/jsonExporter'
 import {XmlImporter} from '../../importers/xmlImporter'
 import {XmlExporter} from '../../exporters/xmlExporter'
+import {BpmnExporter} from '../../exporters/bpmnExporter'
+import BpmnExportDialog from '../dialog/bpmnExportDialog'
 import {getCurrentBoard} from '../../store/boards'
 import {getCurrentBoardViews} from '../../store/views'
 import {getCards} from '../../store/cards'
@@ -35,6 +37,7 @@ import CheckIcon from '../../widgets/icons/check'
 import {Constants} from '../../constants'
 
 import TelemetryClient, {TelemetryCategory, TelemetryActions} from '../../telemetry/telemetryClient'
+import {BpmnMappingConfig} from '../../types/bpmn'
 
 type Props = {
     activeTheme: string
@@ -53,6 +56,7 @@ const SidebarSettingsMenu = (props: Props) => {
     // on theme change. This can cause props and the actual
     // active theme can go out of sync
     const [themeName, setThemeName] = useState(props.activeTheme)
+    const [showBpmnExportDialog, setShowBpmnExportDialog] = useState(false)
 
     const updateTheme = (theme: Theme | null, name: string) => {
         setTheme(theme)
@@ -187,6 +191,16 @@ const SidebarSettingsMenu = (props: Props) => {
                                 }}
                             />
                         }
+                        {currentBoard &&
+                            <Menu.Text
+                                id='export_bpmn'
+                                name={intl.formatMessage({id: 'Sidebar.export-bpmn', defaultMessage: 'Export BPMN'})}
+                                onClick={async () => {
+                                    TelemetryClient.trackEvent(TelemetryCategory, TelemetryActions.ExportBpmn)
+                                    setShowBpmnExportDialog(true)
+                                }}
+                            />
+                        }
                     </Menu.SubMenu>
                     <Menu.SubMenu
                         id='lang'
@@ -233,6 +247,18 @@ const SidebarSettingsMenu = (props: Props) => {
                     />
                 </Menu>
             </MenuWrapper>
+            {showBpmnExportDialog && currentBoard && (
+                <BpmnExportDialog
+                    board={currentBoard}
+                    cards={Object.values(allCards).filter((card) => card.boardId === currentBoard.id)}
+                    onClose={() => setShowBpmnExportDialog(false)}
+                    onExport={(config: BpmnMappingConfig) => {
+                        const cards = Object.values(allCards).filter((card) => card.boardId === currentBoard.id)
+                        BpmnExporter.exportBoardBpmn(currentBoard, cards, config)
+                        setShowBpmnExportDialog(false)
+                    }}
+                />
+            )}
         </div>
     )
 }
