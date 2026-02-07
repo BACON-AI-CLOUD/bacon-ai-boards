@@ -15,97 +15,70 @@ export default function FocalboardLogoIcon(): JSX.Element {
             y='0px'
             viewBox='0 0 64 64'
         >
-            {/* BACON-AI Logo - Stylized B with Kanban grid */}
-            {/* Outer rounded square background */}
-            <rect
-                x='4'
-                y='4'
-                width='56'
-                height='56'
-                rx='8'
-                ry='8'
+            {/* BACON-AI Logo - A! in circle representing AI */}
+
+            {/* Outer circle - main container */}
+            <circle
+                cx='32'
+                cy='32'
+                r='29'
+                fill='none'
+                stroke='currentColor'
+                strokeWidth='3'
+                opacity='0.9'
+            />
+
+            {/* Inner subtle fill */}
+            <circle
+                cx='32'
+                cy='32'
+                r='26'
+                fill='currentColor'
+                opacity='0.08'
+            />
+
+            {/* Letter A - clean triangular design */}
+            <path
+                d='M15 50 L28 14 L32 14 L32 50 L27 50 L27 40 L20 40 L17 50 Z'
+                fill='currentColor'
+            />
+            {/* A crossbar cutout */}
+            <path
+                d='M22 35 L27 35 L27 26 Z'
                 fill='currentColor'
                 opacity='0.15'
             />
-            {/* Letter B - left stem */}
+
+            {/* Exclamation mark - the "I" in AI */}
+            {/* Main stem with rounded ends */}
             <rect
-                x='16'
-                y='12'
+                x='38'
+                y='14'
                 width='8'
-                height='40'
-                rx='2'
+                height='24'
+                rx='4'
                 fill='currentColor'
             />
-            {/* Letter B - top bump */}
-            <path
-                d='M24 12 h12 c6 0 10 4 10 9 c0 5 -4 9 -10 9 h-12 v-18 z'
-                fill='currentColor'
-            />
-            {/* Letter B - bottom bump (larger) */}
-            <path
-                d='M24 30 h14 c7 0 12 5 12 11 c0 6 -5 11 -12 11 h-14 v-22 z'
-                fill='currentColor'
-            />
-            {/* Kanban column lines inside B */}
-            <rect
-                x='28'
-                y='16'
-                width='2'
-                height='10'
-                rx='1'
-                fill='currentColor'
-                opacity='0.3'
-            />
-            <rect
-                x='34'
-                y='16'
-                width='2'
-                height='10'
-                rx='1'
-                fill='currentColor'
-                opacity='0.3'
-            />
-            <rect
-                x='28'
-                y='34'
-                width='2'
-                height='14'
-                rx='1'
-                fill='currentColor'
-                opacity='0.3'
-            />
-            <rect
-                x='34'
-                y='34'
-                width='2'
-                height='14'
-                rx='1'
-                fill='currentColor'
-                opacity='0.3'
-            />
-            <rect
-                x='40'
-                y='36'
-                width='2'
-                height='10'
-                rx='1'
-                fill='currentColor'
-                opacity='0.3'
-            />
-            {/* AI spark accent */}
+
+            {/* Exclamation dot */}
             <circle
-                cx='52'
-                cy='12'
-                r='4'
+                cx='42'
+                cy='46'
+                r='5'
                 fill='currentColor'
-                opacity='0.8'
             />
-            <path
-                d='M52 6 v-2 M52 16 v2 M46 12 h-2 M56 12 h2 M48 8 l-1.5 -1.5 M56 8 l1.5 -1.5 M48 16 l-1.5 1.5 M56 16 l1.5 1.5'
+
+            {/* Subtle orbital ring accent */}
+            <ellipse
+                cx='32'
+                cy='32'
+                rx='22'
+                ry='8'
+                fill='none'
                 stroke='currentColor'
-                strokeWidth='1.5'
-                strokeLinecap='round'
-                opacity='0.6'
+                strokeWidth='1'
+                opacity='0.2'
+                transform='rotate(-20 32 32)'
             />
         </svg>
     )
