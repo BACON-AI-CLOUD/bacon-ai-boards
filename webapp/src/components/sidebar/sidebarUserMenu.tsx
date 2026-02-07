@@ -38,7 +38,10 @@ const SidebarUserMenu = () => {
                     <div className='logo'>
                         <div className='logo-title'>
                             <FocalboardLogoIcon/>
-                            <span>{'BACON-AI-BOARDS'}</span>
+                            <div className='brand-text'>
+                                <span className='brand-name'>{'BACON-AI'}</span>
+                                <span className='brand-subtitle'>{'AI Orchestration'}</span>
+                            </div>
                             <div className='versionFrame'>
                                 <div
                                     className='version'
@@ -81,7 +84,7 @@ const SidebarUserMenu = () => {
 
                         <Menu.Text
                             id='about'
-                            name={intl.formatMessage({id: 'Sidebar.about', defaultMessage: 'About BACON-AI-BOARDS'})}
+                            name={intl.formatMessage({id: 'Sidebar.about', defaultMessage: 'About BACON-AI'})}
                             onClick={async () => {
                                 window.open('https://bacon-ai.cloud?utm_source=webapp', '_blank')
 

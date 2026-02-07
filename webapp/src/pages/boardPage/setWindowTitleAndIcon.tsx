@@ -23,7 +23,7 @@ const SetWindowTitleAndIcon = (): null => {
             }
             document.title = title
         } else {
-            document.title = 'BACON-AI-BOARDS'
+            document.title = 'BACON-AI'
         }
     }, [board?.title, activeView?.title])
 

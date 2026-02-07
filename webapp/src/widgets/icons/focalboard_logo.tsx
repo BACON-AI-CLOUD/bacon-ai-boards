@@ -1,6 +1,6 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-// Modified for BACON-AI-BOARDS
+// Modified for BACON-AI
 
 import React from 'react'
 
@@ -15,7 +15,7 @@ export default function FocalboardLogoIcon(): JSX.Element {
             y='0px'
             viewBox='0 0 64 64'
         >
-            {/* BACON-AI-BOARDS Logo - Stylized B with Kanban grid */}
+            {/* BACON-AI Logo - Stylized B with Kanban grid */}
             {/* Outer rounded square background */}
             <rect
                 x='4'
@@ -47,14 +47,66 @@ export default function FocalboardLogoIcon(): JSX.Element {
                 fill='currentColor'
             />
             {/* Kanban column lines inside B */}
-            <rect x='28' y='16' width='2' height='10' rx='1' fill='currentColor' opacity='0.3'/>
-            <rect x='34' y='16' width='2' height='10' rx='1' fill='currentColor' opacity='0.3'/>
-            <rect x='28' y='34' width='2' height='14' rx='1' fill='currentColor' opacity='0.3'/>
-            <rect x='34' y='34' width='2' height='14' rx='1' fill='currentColor' opacity='0.3'/>
-            <rect x='40' y='36' width='2' height='10' rx='1' fill='currentColor' opacity='0.3'/>
+            <rect
+                x='28'
+                y='16'
+                width='2'
+                height='10'
+                rx='1'
+                fill='currentColor'
+                opacity='0.3'
+            />
+            <rect
+                x='34'
+                y='16'
+                width='2'
+                height='10'
+                rx='1'
+                fill='currentColor'
+                opacity='0.3'
+            />
+            <rect
+                x='28'
+                y='34'
+                width='2'
+                height='14'
+                rx='1'
+                fill='currentColor'
+                opacity='0.3'
+            />
+            <rect
+                x='34'
+                y='34'
+                width='2'
+                height='14'
+                rx='1'
+                fill='currentColor'
+                opacity='0.3'
+            />
+            <rect
+                x='40'
+                y='36'
+                width='2'
+                height='10'
+                rx='1'
+                fill='currentColor'
+                opacity='0.3'
+            />
             {/* AI spark accent */}
-            <circle cx='52' cy='12' r='4' fill='currentColor' opacity='0.8'/>
-            <path d='M52 6 v-2 M52 16 v2 M46 12 h-2 M56 12 h2 M48 8 l-1.5 -1.5 M56 8 l1.5 -1.5 M48 16 l-1.5 1.5 M56 16 l1.5 1.5' stroke='currentColor' strokeWidth='1.5' strokeLinecap='round' opacity='0.6'/>
+            <circle
+                cx='52'
+                cy='12'
+                r='4'
+                fill='currentColor'
+                opacity='0.8'
+            />
+            <path
+                d='M52 6 v-2 M52 16 v2 M46 12 h-2 M56 12 h2 M48 8 l-1.5 -1.5 M56 8 l1.5 -1.5 M48 16 l-1.5 1.5 M56 16 l1.5 1.5'
+                stroke='currentColor'
+                strokeWidth='1.5'
+                strokeLinecap='round'
+                opacity='0.6'
+            />
         </svg>
     )
 }

@@ -92,7 +92,7 @@ function makeCommonConfig() {
             }),
             new HtmlWebpackPlugin({
                 inject: true,
-                title: 'BACON-AI-BOARDS',
+                title: 'BACON-AI',
                 chunks: ['main'],
                 template: 'html-templates/page.ejs',
                 filename: 'index.html',
