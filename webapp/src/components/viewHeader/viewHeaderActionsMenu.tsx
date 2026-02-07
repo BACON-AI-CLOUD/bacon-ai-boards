@@ -5,6 +5,7 @@ import {useIntl, IntlShape} from 'react-intl'
 
 import {CsvExporter} from '../../csvExporter'
 import {JsonExporter} from '../../exporters/jsonExporter'
+import {XmlExporter} from '../../exporters/xmlExporter'
 import {Archiver} from '../../archiver'
 import {Block} from '../../blocks/block'
 import {Board} from '../../blocks/board'
@@ -117,6 +118,24 @@ function onExportJsonTrigger(board: Board, views: BoardView[], cards: Card[], bl
     }
 }
 
+function onExportXmlTrigger(board: Board, views: BoardView[], cards: Card[], blocks: Block[], intl: IntlShape) {
+    try {
+        XmlExporter.exportBoardXml(board, views, cards, blocks)
+        const exportCompleteMessage = intl.formatMessage({
+            id: 'ViewHeader.export-complete',
+            defaultMessage: 'Export complete!',
+        })
+        sendFlashMessage({content: exportCompleteMessage, severity: 'normal'})
+    } catch (e) {
+        Utils.logError(`ExportXML ERROR: ${e}`)
+        const exportFailedMessage = intl.formatMessage({
+            id: 'ViewHeader.export-failed',
+            defaultMessage: 'Export failed!',
+        })
+        sendFlashMessage({content: exportFailedMessage, severity: 'high'})
+    }
+}
+
 const ViewHeaderActionsMenu = (props: Props) => {
     const {board, activeView, cards} = props
     const intl = useIntl()
@@ -137,6 +156,11 @@ const ViewHeaderActionsMenu = (props: Props) => {
                         id='exportJson'
                         name={intl.formatMessage({id: 'ViewHeader.export-json', defaultMessage: 'Export to JSON'})}
                         onClick={() => onExportJsonTrigger(board, views, cards, contents as Block[], intl)}
+                    />
+                    <Menu.Text
+                        id='exportXml'
+                        name={intl.formatMessage({id: 'ViewHeader.export-xml', defaultMessage: 'Export to XML'})}
+                        onClick={() => onExportXmlTrigger(board, views, cards, contents as Block[], intl)}
                     />
                     <Menu.Text
                         id='exportBoardArchive'
