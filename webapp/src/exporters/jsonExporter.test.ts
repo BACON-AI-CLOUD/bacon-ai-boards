@@ -1,13 +1,13 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import {JsonExporter, BoardJsonExport} from './jsonExporter'
 import {TestBlockFactory} from '../test/testBlockFactory'
-import {Board} from '../blocks/board'
 import {BoardView} from '../blocks/boardView'
 import {Card} from '../blocks/card'
 import {Block} from '../blocks/block'
 import {Utils} from '../utils'
+
+import {JsonExporter, BoardJsonExport} from './jsonExporter'
 
 // Mock document and URL APIs for download functionality
 const mockLink = {

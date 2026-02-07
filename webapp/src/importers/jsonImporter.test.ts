@@ -1,10 +1,12 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
-
-import {JsonImporter, ImportResult} from './jsonImporter'
-import {FetchMock} from '../test/fetchMock'
-import {Utils} from '../utils'
 import 'isomorphic-fetch'
+
+import {FetchMock} from '../test/fetchMock'
+import mutator from '../mutator'
+import {Utils} from '../utils'
+
+import {JsonImporter} from './jsonImporter'
 
 // Mock the mutator module
 jest.mock('../mutator', () => ({
@@ -13,9 +15,6 @@ jest.mock('../mutator', () => ({
         createBoardsAndBlocks: jest.fn(),
     },
 }))
-
-// Import mocked mutator
-import mutator from '../mutator'
 
 global.fetch = FetchMock.fn
 
@@ -318,6 +317,7 @@ describe('JsonImporter', () => {
             const result = await JsonImporter.importFromString('[]')
 
             expect(result.success).toBe(false)
+
             // Arrays are objects in JS, but don't have the required fields
             expect(result.success).toBe(false)
         })

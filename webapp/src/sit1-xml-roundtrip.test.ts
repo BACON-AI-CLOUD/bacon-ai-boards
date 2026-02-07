@@ -1,3 +1,5 @@
+// Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
+// See LICENSE.txt for license information.
 // SIT1 Round-Trip Test: XML Export -> Import Verification
 // This integration test verifies that data exported to XML can be imported back correctly
 

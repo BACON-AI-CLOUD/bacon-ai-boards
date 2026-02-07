@@ -7,7 +7,6 @@ import './topBar.scss'
 import {FormattedMessage} from 'react-intl'
 
 import HelpIcon from '../widgets/icons/help'
-import {Constants} from '../constants'
 
 const TopBar = (): JSX.Element => {
     const feedbackUrl = 'mailto:hello@bacon-ai.cloud?subject=BACON-AI%20Feedback'
